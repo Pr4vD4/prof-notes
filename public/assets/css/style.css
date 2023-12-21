@@ -1,0 +1,41 @@
+.note-container {
+    height: 2.5vh;
+    width: calc(90%/7);
+    border: 1px rgba(0, 0, 0, 0.5) dotted;
+    position: absolute;
+    /*display: none;*/
+}
+
+.drag-item {
+    position: absolute;
+    z-index: 10;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+}
+.clef {
+    width: 7vw;
+    height: 20vh;
+    background-image: url("../img/clef.png");
+    /*left: 20%;*/
+    transform: translateX(45vw) translateY(70vh);
+}
+
+.clef-container {
+    height: 5vh;
+    width: 10%;
+    margin: 0;
+    z-index: 3;
+    position: absolute;
+    border: 1px rgba(0, 0, 0, 0.5) solid;
+}
+
+.note {
+    width: 5vh;
+    height: 5vh;
+    background-image: url("../img/whole_note.png");
+    /*left: 50%;*/
+    transform: translateX(55vw) translateY(80vh);
+
+}
