@@ -3,7 +3,6 @@
     width: calc(90%/7);
     border: 1px rgba(0, 0, 0, 0.5) dotted;
     position: absolute;
-    /*display: none;*/
 }
 
 .drag-item {
@@ -16,10 +15,9 @@
 }
 .clef {
     width: 7vw;
-    height: 20vh;
+    height: 36vh;
     background-image: url("../img/clef.png");
     /*left: 20%;*/
-    transform: translateX(45vw) translateY(70vh);
 }
 
 .clef-container {
@@ -36,6 +34,5 @@
     height: 5vh;
     background-image: url("../img/whole_note.png");
     /*left: 50%;*/
-    transform: translateX(55vw) translateY(80vh);
 
 }

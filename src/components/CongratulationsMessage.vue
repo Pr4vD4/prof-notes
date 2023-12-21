@@ -5,12 +5,16 @@ export default {
 </script>
 
 <template>
-<div class="message">
-    <div class="message-box d-flex flex-column justify-content-center align-items-center">
-        <div class="h1">Вы успешно справились!</div>
-        <button onclick="window.location.reload()" class="toMenu mt-5">На главную</button>
+    <div class="message">
+        <div class="message-box d-flex flex-column justify-content-center align-items-center">
+            <div class="h1">Вы успешно справились!
+                <div class="d-flex justify-content-center w-100 mt-5">
+                    <button onclick="window.location.reload()" class="toMenu bg-warning m-1">На главную</button>
+                    <button onclick="window.location.reload()" class="to-next m-1">Следующий уровень</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </template>
 
 <style scoped>
@@ -27,13 +31,11 @@ export default {
     background-image: url("/public/assets/img/cong.png");
     background-size: cover;
     background-repeat: no-repeat;
-    //backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.1);
+//backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.1);
 }
 
 .message-box {
-    //font-size: 7rem;
-    position: absolute;
+//font-size: 7rem; position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -49,8 +51,20 @@ export default {
 }
 
 .toMenu {
-    //font-family: CyrRound, serif;
-    color: white;
+//font-family: CyrRound, serif; color: white;
+    font-size: 6vh;
+    text-align: center;
+    padding: 0.25vh 1.5vw;
+    margin: 0 1vw;
+    background: #45b100;
+    border-radius: 1vw;
+    border: 0.15vw solid white;
+    width: 30%;
+    text-decoration: none;
+}
+
+.to-next {
+//font-family: CyrRound, serif; color: white;
     font-size: 6vh;
     text-align: center;
     padding: 0.25vh 1.5vw;

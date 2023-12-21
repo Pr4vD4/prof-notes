@@ -1,12 +1,12 @@
 <template>
 
-    <CongratulationsMessage v-if="success" />
+    <CongratulationsMessage v-if="success"/>
     <div class="title text-center">
         Гамма ля минор
     </div>
     <div id="game" ref="game">
 
-        <div class="clef-container drag-container">
+        <div class="clef-container drag-container opacity-0">
 
         </div>
 
@@ -18,8 +18,9 @@
             <hr id="line-1">
         </div>
 
-
     </div>
+
+    <button type="button" @click="toggleGrid" class="btn btn-light toggle-grid">{{ grid ? 'Скрыть сетку' : 'Показать сетку' }}</button>
 
 
 </template>
@@ -37,7 +38,8 @@ export default {
     data() {
         return {
             game: {},
-            success: false
+            success: false,
+            grid: false
         }
     },
     mounted() {
@@ -49,6 +51,21 @@ export default {
         'game.success'(newVal) {
             console.log(1)
             this.success = newVal
+        }
+    },
+    methods: {
+        toggleGrid() {
+            let grid = this.$refs.game.querySelectorAll('.drag-container')
+            if (!this.grid) {
+                grid.forEach((dragContainer) => {
+                    dragContainer.classList.remove('opacity-0')
+                })
+            } else {
+                grid.forEach((dragContainer) => {
+                    dragContainer.classList.add('opacity-0')
+                })
+            }
+            this.grid = !this.grid
         }
     }
 
@@ -70,7 +87,7 @@ export default {
 hr {
     width: 100%;
     margin: 0;
-    border-top: 1px black solid!important;
+    border-top: 1px black solid !important;
     opacity: 1;
     z-index: 2;
     height: 5vh;
@@ -84,5 +101,10 @@ hr {
     font-size: 4rem;
 }
 
+.toggle-grid {
+    position: absolute;
+    bottom: 1vh;
+    right: 1vh;
+}
 
 </style>

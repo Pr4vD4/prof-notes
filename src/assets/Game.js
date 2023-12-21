@@ -28,7 +28,7 @@ export class Game {
                 let noteContainer = document.createElement('div')
                 noteContainer.dataset.note = String((i) % 7)
                 noteContainer.dataset.pos = String(j)
-                noteContainer.classList.add('note-container', 'drag-container')
+                noteContainer.classList.add('note-container', 'drag-container', 'opacity-0')
                 noteContainer.style.left = `calc((90%/7) * ${j} + 10%)`
                 noteContainer.style.top = `calc(${yStart}px + (2.5vh / 2 * 3) - (2.5vh * ${i}))`
 
@@ -105,9 +105,16 @@ export class Game {
         if (item.classList.contains('clef')) {
             anime({
                 targets: item,
-                translateX: position.x + 'px',
-                translateY: `${position.y - item.getBoundingClientRect().height / 2}px`
+                translateX: position.x + item.getBoundingClientRect().width / 2 + 'px',
+                translateY: `calc(${position.y - item.getBoundingClientRect().height / 2}px + 1vh)`
             })
+            if (container.classList.contains('clef-container')) {
+                let notes = this.gameElement.querySelectorAll('.note').forEach((note) => {
+                    note.classList.remove('d-none')
+                })
+            }
+
+
         } else {
             this.levelAppend(container, item)
             anime({
@@ -122,11 +129,15 @@ export class Game {
     }
 
     levelAppend = (container, item) => {
-        if (item.dataset.currentPos !== container.dataset.pos) {
+
+
+        if (item.dataset.currentPos !== container.dataset.pos && !this.gameElement.querySelector(`div[data-current-pos='${item.dataset.currentPos}']`)) {
             this.levelDeleteNote(container, item)
         }
         item.dataset.currentNote = container.dataset.note
         item.dataset.currentPos = container.dataset.pos
+
+
         this.level[container.dataset.pos] = container.dataset.note
     }
 
@@ -135,15 +146,19 @@ export class Game {
     }
 
     createClef() {
+        const size = window.screen
         let clef = document.createElement('div')
         clef.classList.add('drag-item', 'clef')
+        clef.style.transform = `translateX(${(size.width / 100) * 45}px) translateY(${(size.height / 100) * 60}px)`
         this.gameElement.append(clef)
     }
 
     createNotes() {
+        const size = window.screen
         for (let i = 0; i < 7; i++) {
             let note = document.createElement('div')
-            note.classList.add('drag-item', 'note')
+            note.classList.add('drag-item', 'note', 'd-none')
+            note.style.transform = `translateX(${(size.width / 100) * 55}px) translateY(${(size.height / 100) * 80}px)`
             this.gameElement.append(note)
         }
 
