@@ -3,16 +3,15 @@ import anime from 'animejs/lib/anime.es.js';
 import touch_position from "touch-position";
 
 export class Game {
-    constructor(gameElement) {
+    constructor(gameElement, levelMap) {
 
         this.gameElement = gameElement
         this.position = touch_position()
 
-        this.levelMap = [5, 6, 0, 1, 2, 3, 4]
+        this.levelMap = levelMap
         this.level = [null, null, null, null, null, null, null]
 
         this.createGrid()
-        this.createClef()
         this.createNotes()
 
         this.success = false
@@ -102,7 +101,7 @@ export class Game {
 
         const position = container.getBoundingClientRect()
 
-        if (item.classList.contains('clef')) {
+        if (item.classList.contains('clef') || item.classList.contains('clef-bas')) {
             anime({
                 targets: item,
                 translateX: position.x + item.getBoundingClientRect().width / 2 + 'px',
@@ -149,7 +148,15 @@ export class Game {
         const size = window.screen
         let clef = document.createElement('div')
         clef.classList.add('drag-item', 'clef')
-        clef.style.transform = `translateX(${(size.width / 100) * 45}px) translateY(${(size.height / 100) * 60}px)`
+        clef.style.transform = `translateX(${(size.width / 100) * 45}px) translateY(${(size.height / 100) * 55}px)`
+        this.gameElement.append(clef)
+    }
+
+    createClefBas() {
+        const size = window.screen
+        let clef = document.createElement('div')
+        clef.classList.add('drag-item', 'clef-bas')
+        clef.style.transform = `translateX(${(size.width / 100) * 45}px) translateY(${(size.height / 100) * 55}px)`
         this.gameElement.append(clef)
     }
 

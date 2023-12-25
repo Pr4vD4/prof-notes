@@ -1,6 +1,21 @@
 <script>
+import router from "@/router";
+
 export default {
-    name: "CongratulationsMessage"
+    name: "CongratulationsMessage",
+    props: {
+        id: String
+    },
+    methods: {
+        nextLvl() {
+            router.push({
+                name: 'home',
+                params: {
+                    id: +this.id + 1
+                }
+            })
+        }
+    }
 }
 </script>
 
@@ -10,7 +25,7 @@ export default {
             <div class="h1">Вы успешно справились!
                 <div class="d-flex justify-content-center w-100 mt-5">
                     <button onclick="window.location.reload()" class="toMenu bg-warning m-1">На главную</button>
-                    <button onclick="window.location.reload()" class="to-next m-1">Следующий уровень</button>
+                    <button @click="nextLvl()" class="to-next m-1" v-if="id === 0">Далее</button>
                 </div>
             </div>
         </div>
@@ -35,8 +50,7 @@ export default {
 }
 
 .message-box {
-//font-size: 7rem; position: absolute;
-    top: 50%;
+//font-size: 7rem; position: absolute; top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
@@ -51,8 +65,7 @@ export default {
 }
 
 .toMenu {
-//font-family: CyrRound, serif; color: white;
-    font-size: 6vh;
+//font-family: CyrRound, serif; color: white; font-size: 6vh;
     text-align: center;
     padding: 0.25vh 1.5vw;
     margin: 0 1vw;
@@ -64,8 +77,7 @@ export default {
 }
 
 .to-next {
-//font-family: CyrRound, serif; color: white;
-    font-size: 6vh;
+//font-family: CyrRound, serif; color: white; font-size: 6vh;
     text-align: center;
     padding: 0.25vh 1.5vw;
     margin: 0 1vw;

@@ -20,6 +20,12 @@
     /*left: 20%;*/
 }
 
+.clef-bas {
+    width: 7vw;
+    height: 22vh;
+    background-image: url("../img/clef_bas.png");
+}
+
 .clef-container {
     height: 5vh;
     width: 10%;

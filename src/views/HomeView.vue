@@ -1,8 +1,8 @@
 <template>
 
-    <CongratulationsMessage v-if="success"/>
+    <CongratulationsMessage :id="id" v-if="success"/>
     <div class="title text-center">
-        Гамма ля минор
+        Гамма {{ names[id] }}
     </div>
     <div id="game" ref="game">
 
@@ -39,11 +39,27 @@ export default {
         return {
             game: {},
             success: false,
-            grid: false
+            grid: false,
+            levelMaps: [
+                [5, 6, 0, 1, 2, 3, 4],
+                [5, 6, 0, 1, 2, 3, 4]
+            ],
+            names: [
+                'ля минор',
+                'до мажор',
+            ]
         }
     },
+    props: {
+        id: String
+    },
     mounted() {
-        this.game = new Game(this.$refs.game)
+        this.game = new Game(this.$refs.game, this.levelMaps[this.id])
+        if (this.id === 0) {
+            this.game.createClef()
+        } else {
+            this.game.createClefBas()
+        }
         this.game.addEvents(this)
         console.log(this)
     },
@@ -51,6 +67,13 @@ export default {
         'game.success'(newVal) {
             console.log(1)
             this.success = newVal
+        },
+        id() {
+            window.location.reload()
+            console.log(this.id)
+            this.success = false
+            this.game = new Game(this.$refs.game, this.levelMaps[this.id])
+            this.game.addEvents(this)
         }
     },
     methods: {
