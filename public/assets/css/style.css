@@ -42,3 +42,10 @@
     /*left: 50%;*/
 
 }
+
+.note-crossed {
+    width: 5vh;
+    height: 5vh;
+    background-image: url("../img/whole_note_crossed.png");
+    /*left: 50%;*/
+}

@@ -25,7 +25,7 @@ export default {
             <div class="h1">Вы успешно справились!
                 <div class="d-flex justify-content-center w-100 mt-5">
                     <button onclick="window.location.reload()" class="toMenu bg-warning m-1">На главную</button>
-                    <button @click="nextLvl()" class="to-next m-1" v-if="id === 0">Далее</button>
+                    <button @click="nextLvl()" class="to-next m-1" v-if="id == 0">Далее</button>
                 </div>
             </div>
         </div>

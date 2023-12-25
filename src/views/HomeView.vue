@@ -55,7 +55,7 @@ export default {
     },
     mounted() {
         this.game = new Game(this.$refs.game, this.levelMaps[this.id])
-        if (this.id === 0) {
+        if (this.id == 0) {
             this.game.createClef()
         } else {
             this.game.createClefBas()
