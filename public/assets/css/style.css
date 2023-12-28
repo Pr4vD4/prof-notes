@@ -1,6 +1,6 @@
 .note-container {
     height: 2.5vh;
-    width: calc(90%/7);
+    width: calc(90%/10);
     border: 1px rgba(0, 0, 0, 0.5) dotted;
     position: absolute;
 }
@@ -51,8 +51,8 @@
 }
 
 .sharp {
-    width: 4vh;
-    height: 4vh;
+    width: 9vh;
+    height: 9vh;
     background-image: url("../img/sharp.png");
     /*left: 50%;*/
 }

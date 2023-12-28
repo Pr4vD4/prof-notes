@@ -28,7 +28,7 @@ export class Game {
                 noteContainer.dataset.note = String((i) % 7)
                 noteContainer.dataset.pos = String(j)
                 noteContainer.classList.add('note-container', 'drag-container', 'opacity-0')
-                noteContainer.style.left = `calc((90%/7) * ${j} + 10%)`
+                noteContainer.style.left = `calc((90%/10) * ${j} + 10%)`
                 noteContainer.style.top = `calc(${yStart}px + (2.5vh / 2 * 3) - (2.5vh * ${i}))`
 
                 this.gameElement.append(noteContainer)
@@ -126,7 +126,7 @@ export class Game {
             anime({
                 targets: item,
                 translateX: position.x + position.width / 2 - item.getBoundingClientRect().width / 2 - 60 + 'px',
-                translateY: position.y - 10 + 'px'
+                translateY: position.y - 40 + 'px'
             })
         }
         else {
@@ -187,7 +187,7 @@ export class Game {
         if (localStorage.id == 1) {
             let sharp = document.createElement('div')
             sharp.classList.add('drag-item', 'sharp', 'd-none')
-            sharp.style.transform = `translateX(${(size.width / 100) * 50}px) translateY(${(size.height / 100) * 90}px)`
+            sharp.style.transform = `translateX(${(size.width / 100) * 50}px) translateY(${(size.height / 100) * 70}px)`
             this.gameElement.append(sharp)
         }
 
