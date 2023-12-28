@@ -3,17 +3,20 @@ import router from "@/router";
 
 export default {
     name: "CongratulationsMessage",
-    props: {
-        id: String
+    data() {
+        return {
+            id: Number(localStorage.id)
+        }
     },
     methods: {
         nextLvl() {
-            router.push({
-                name: 'home',
-                params: {
-                    id: +this.id + 1
-                }
-            })
+            localStorage.id = Number(localStorage.id) + 1
+            window.location.reload()
+        }
+    },
+    mounted() {
+        if (Number(localStorage.id) === 1) {
+            localStorage.id = 0
         }
     }
 }
@@ -24,7 +27,7 @@ export default {
         <div class="message-box d-flex flex-column justify-content-center align-items-center">
             <div class="h1">Вы успешно справились!
                 <div class="d-flex justify-content-center w-100 mt-5">
-                    <button onclick="window.location.reload()" class="toMenu bg-warning m-1">На главную</button>
+                    <button onclick="localStorage.id = 0; window.location.reload()" class="toMenu bg-warning m-1">На главную</button>
                     <button @click="nextLvl()" class="to-next m-1" v-if="id == 0">Далее</button>
                 </div>
             </div>

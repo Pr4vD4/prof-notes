@@ -162,16 +162,12 @@ export class Game {
 
     createNotes() {
         const size = window.screen
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 7; i++) {
             let note = document.createElement('div')
             note.classList.add('drag-item', 'note', 'd-none')
             note.style.transform = `translateX(${(size.width / 100) * (20 + (60 / 7) * (i))}px) translateY(${(size.height / 100) * 80}px)`
             this.gameElement.append(note)
         }
-        let note = document.createElement('div')
-        note.classList.add('drag-item', 'note-crossed', 'd-none')
-        note.style.transform = `translateX(${(size.width / 100) * (20 + (60 / 7) * (6))}px) translateY(${(size.height / 100) * 80}px)`
-        this.gameElement.append(note)
     }
 
 }

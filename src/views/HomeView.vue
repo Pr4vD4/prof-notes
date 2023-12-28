@@ -37,6 +37,7 @@ export default {
     components: {CongratulationsMessage},
     data() {
         return {
+            id: localStorage.getItem('id'),
             game: {},
             success: false,
             grid: false,
@@ -50,8 +51,10 @@ export default {
             ]
         }
     },
-    props: {
-        id: String
+    setup() {
+        if (!localStorage.getItem('id')) {
+            localStorage.setItem('id', 0)
+        }
     },
     mounted() {
         this.game = new Game(this.$refs.game, this.levelMaps[this.id])
@@ -66,6 +69,9 @@ export default {
     watch: {
         'game.success'(newVal) {
             console.log(1)
+            if (newVal) {
+                localStorage.id = Number(localStorage.id) + 1
+            }
             this.success = newVal
         },
         id() {
