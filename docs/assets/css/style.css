@@ -49,3 +49,10 @@
     background-image: url("../img/whole_note_crossed.png");
     /*left: 50%;*/
 }
+
+.sharp {
+    width: 4vh;
+    height: 4vh;
+    background-image: url("../img/sharp.png");
+    /*left: 50%;*/
+}

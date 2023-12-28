@@ -90,10 +90,16 @@ export class Game {
             }
 
         }
-
-        if (equalsCheck(this.level, this.levelMap)) {
-            obj.success = true
+        if (localStorage.id == 0) {
+            if (equalsCheck(this.level, this.levelMap)) {
+                obj.success = true
+            }
+        } else {
+            if (equalsCheck(this.level, this.levelMap) && document.querySelector('.sharp').dataset.currentNote == this.levelMap[6]) {
+                obj.success = true
+            }
         }
+
 
     }
 
@@ -108,13 +114,22 @@ export class Game {
                 translateY: `calc(${position.y - item.getBoundingClientRect().height / 2}px + 1vh)`
             })
             if (container.classList.contains('clef-container')) {
-                let notes = this.gameElement.querySelectorAll('.note, .note-crossed').forEach((note) => {
+                let notes = this.gameElement.querySelectorAll('.note, .sharp').forEach((note) => {
                     note.classList.remove('d-none')
                 })
             }
 
 
-        } else {
+        } else if (item.classList.contains('sharp')) {
+            item.dataset.currentNote = container.dataset.note
+            item.dataset.currentPos = container.dataset.pos
+            anime({
+                targets: item,
+                translateX: position.x + position.width / 2 - item.getBoundingClientRect().width / 2 - 60 + 'px',
+                translateY: position.y - 10 + 'px'
+            })
+        }
+        else {
             this.levelAppend(container, item)
             anime({
                 targets: item,
@@ -168,6 +183,14 @@ export class Game {
             note.style.transform = `translateX(${(size.width / 100) * (20 + (60 / 7) * (i))}px) translateY(${(size.height / 100) * 80}px)`
             this.gameElement.append(note)
         }
+
+        if (localStorage.id == 1) {
+            let sharp = document.createElement('div')
+            sharp.classList.add('drag-item', 'sharp', 'd-none')
+            sharp.style.transform = `translateX(${(size.width / 100) * 50}px) translateY(${(size.height / 100) * 90}px)`
+            this.gameElement.append(sharp)
+        }
+
     }
 
 }
