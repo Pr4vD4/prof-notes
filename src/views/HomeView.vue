@@ -21,6 +21,7 @@
     </div>
 
     <button type="button" @click="toggleGrid" class="btn btn-light toggle-grid">{{ grid ? 'Скрыть сетку' : 'Показать сетку' }}</button>
+    <back-button/>
 
 
 </template>
@@ -31,10 +32,11 @@
 
 import {Game} from "@/assets/Game";
 import CongratulationsMessage from "@/components/CongratulationsMessage.vue";
+import BackButton from "@/components/BachButton.vue";
 
 export default {
     name: 'HomeView',
-    components: {CongratulationsMessage},
+    components: {BackButton, CongratulationsMessage},
     data() {
         return {
             id: localStorage.getItem('id'),
@@ -53,6 +55,9 @@ export default {
     },
     setup() {
         if (!localStorage.getItem('id')) {
+            localStorage.setItem('id', 0)
+        }
+        if (localStorage.getItem('id') > 1) {
             localStorage.setItem('id', 0)
         }
     },
